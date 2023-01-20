@@ -4,7 +4,7 @@ import Logo from "../img/logo.png";
 const HomePage = () => {
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
-      <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-start justify-center ">
+      <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-start justify-center px-3 ">
         <div className="flex items-start  flex-col  gap-2  mx-auto my-auto">
           <img
             className="block mx-auto"
