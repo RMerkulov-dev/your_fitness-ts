@@ -55,6 +55,9 @@ const TrainingPage = () => {
   };
 
   console.log(allTrains);
+
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
@@ -137,7 +140,7 @@ const TrainingPage = () => {
           </button>
         </form>
         <div className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3">
-          <TrainingItem data={trainData} />
+          {/*<TrainingItem data={allTrains} />*/}
         </div>
       </div>
     </div>
