@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TrainingItem from "../components/TrainingItem";
 
 const TrainingPage = () => {
@@ -6,6 +6,7 @@ const TrainingPage = () => {
   const [repeat, setRepeat] = useState("");
   const [sets, setSets] = useState("");
   const [fill, setFill] = useState("bad");
+  const [allTrains, setAllTrains] = useState([]);
 
   interface FormDataType {
     trainName: string;
@@ -49,8 +50,11 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
+    // @ts-ignore
+    setAllTrains([...allTrains, trainData]);
   };
 
+  console.log(allTrains);
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
