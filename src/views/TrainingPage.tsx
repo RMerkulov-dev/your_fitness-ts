@@ -13,6 +13,12 @@ const TrainingPage = () => {
     sets: string;
     fill: string;
   }
+  const responseBody: FormDataType = {
+    trainName: "",
+    repeat: "",
+    sets: "0",
+    fill: "bad",
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -39,12 +45,20 @@ const TrainingPage = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    responseBody.trainName = trainName;
+    responseBody.repeat = repeat;
+    responseBody.sets = sets;
+    responseBody.fill = fill;
+    console.log(JSON.stringify(responseBody));
   };
 
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
-        <form className="flex flex-col items-center justify-center gap-4 mt-[100px] w-[300px]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center gap-4 mt-[100px] w-[300px]"
+        >
           <label>
             <input
               className="p-1 rounded-md border-2 border-amber-300 w-[300px] "
