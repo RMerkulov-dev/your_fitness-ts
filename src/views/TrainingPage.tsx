@@ -13,7 +13,7 @@ const TrainingPage = () => {
     sets: string;
     fill: string;
   }
-  const responseBody: FormDataType = {
+  const trainData: FormDataType = {
     trainName: "",
     repeat: "",
     sets: "0",
@@ -45,11 +45,10 @@ const TrainingPage = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    responseBody.trainName = trainName;
-    responseBody.repeat = repeat;
-    responseBody.sets = sets;
-    responseBody.fill = fill;
-    console.log(JSON.stringify(responseBody));
+    trainData.trainName = trainName;
+    trainData.repeat = repeat;
+    trainData.sets = sets;
+    trainData.fill = fill;
   };
 
   return (
