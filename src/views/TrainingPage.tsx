@@ -7,6 +7,13 @@ const TrainingPage = () => {
   const [sets, setSets] = useState("");
   const [fill, setFill] = useState("bad");
 
+  interface FormDataType {
+    trainName: string;
+    repeat: string;
+    sets: string;
+    fill: string;
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "exercise":
@@ -28,6 +35,10 @@ const TrainingPage = () => {
         setFill(e.target.value);
         break;
     }
+  };
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
   };
 
   return (
@@ -101,7 +112,10 @@ const TrainingPage = () => {
               good
             </label>
           </div>
-          <button className="block mx-auto rounded-md px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 ">
+          <button
+            onSubmit={handleSubmit}
+            className="block mx-auto rounded-md px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 "
+          >
             done
           </button>
         </form>
