@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
-import { pink, red, yellow, green } from "@mui/material/colors";
+import { red, yellow, green } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
+import Logo from "../img/logo.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
   const [repeat, setRepeat] = useState("0");
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
-  const [allTrains, setAllTrains] = useState([]);
+  const [allTrains, setAllTrains] = useState(() => {
+    const trains = localStorage.getItem("ALL_TRAINS");
+    // @ts-ignore
+    const initialValue = JSON.parse(trains);
+    return initialValue || [];
+  });
+  const showToastMessage = () => {
+    toast.success("Train added", {
+      position: toast.POSITION.TOP_CENTER,
+      style: { background: "rgb(254 243 199)" },
+    });
+  };
 
   interface FormDataType {
     trainName: string;
@@ -59,6 +73,11 @@ const TrainingPage = () => {
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
+  }, [allTrains]);
+
   const controlProps = (item: string) => ({
     checked: fill === item,
     onChange: handleChange,
@@ -70,11 +89,18 @@ const TrainingPage = () => {
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
+        <img
+          className="block mx-auto"
+          src={Logo}
+          alt="logo"
+          width="200"
+          height="200"
+        />
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center  mt-[100px] w-[300px]"
+          className="flex flex-col items-center justify-center   w-[300px]"
         >
-          <label className="mt-4 font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
+          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
             add your exercise
             <input
               className="p-1 rounded-md border-2 border-amber-300 w-[300px] text-gray-700 "
@@ -172,6 +198,7 @@ const TrainingPage = () => {
           </div>
           <button
             onSubmit={handleSubmit}
+            onClick={showToastMessage}
             className="block mx-auto rounded-full px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 uppercase "
           >
             add
@@ -181,6 +208,7 @@ const TrainingPage = () => {
           <TrainingItem trains={allTrains} />
         </ul>
       </div>
+      <ToastContainer autoClose={500} />
     </div>
   );
 };
