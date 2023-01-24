@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
-  const [repeat, setRepeat] = useState("");
-  const [sets, setSets] = useState("");
+  const [repeat, setRepeat] = useState("0");
+  const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
   const [allTrains, setAllTrains] = useState([]);
 
@@ -13,12 +14,14 @@ const TrainingPage = () => {
     repeat: string;
     sets: string;
     fill: string;
+    id: string;
   }
   const trainData: FormDataType = {
     trainName: "",
     repeat: "",
     sets: "0",
     fill: "bad",
+    id: nanoid(),
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +53,7 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
+
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
   };
@@ -67,6 +71,7 @@ const TrainingPage = () => {
               type="text"
               name="exercise"
               value={trainName}
+              maxLength={10}
               placeholder="Enter name of exercises"
               onChange={handleChange}
             />
@@ -135,9 +140,9 @@ const TrainingPage = () => {
             done
           </button>
         </form>
-        <div className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3">
+        <ul className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3 ">
           <TrainingItem trains={allTrains} />
-        </div>
+        </ul>
       </div>
     </div>
   );

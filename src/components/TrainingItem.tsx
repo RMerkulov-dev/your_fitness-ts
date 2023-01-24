@@ -9,17 +9,34 @@ export interface Trains {
   repeat: string;
   sets: string;
   fill: number;
+  id: string;
 }
 
 const TrainingItem = ({ trains }: TrainsProps) => {
+  // console.log(trains);
   return (
     <>
       {trains.map((train) => (
-        <li className="bg-amber-50 w-full shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]">
-          <span>{train.trainName}</span>
-          <span>{train.repeat}</span>
-          <span>{train.sets}</span>
-          <span>{train.fill}</span>
+        <li
+          key={train.id}
+          className="bg-amber-50 w-full flex rounded-md mb-[10px] p-3 gap-2"
+        >
+          <p className="font-bold text-[12px] text-gray-700 w-[150px]">
+            <span className="text-gray-400 mr-1">train</span>
+            {train.trainName}
+          </p>
+          <p className="font-bold text-[12px] text-gray-700">
+            <span className="text-gray-400 mr-1">repeats</span>
+            {train.repeat}
+          </p>
+          <p className="font-bold text-[12px] text-gray-700">
+            <span className="text-gray-400 mr-1">sets</span>
+            {train.sets}
+          </p>
+          <p className="font-bold text-[12px] text-gray-700">
+            <span className="text-gray-400 mr-1">fill</span>
+            {train.fill}
+          </p>
         </li>
       ))}
     </>
