@@ -13,4 +13,5 @@
 ## Version 1.1.0:<br>
 -Added new logo<br>
 -Added localStorage saving trainings<br>
--Added new icons
+-Added new icons<br>
+-Added confirmation window after adding items
