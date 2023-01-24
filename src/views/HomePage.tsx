@@ -11,8 +11,8 @@ const HomePage = () => {
             className="block mx-auto"
             src={Logo}
             alt="logo"
-            width="200"
-            height="200"
+            width="300"
+            height="300"
           />
           <h2 className="uppercase text-4xl font-bold text-amber-100 mt-10 drop-shadow-md ">
             your app

@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
 import { red, yellow, green } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
+import Logo from "../img/logo.png";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
@@ -80,11 +81,18 @@ const TrainingPage = () => {
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
+        <img
+          className="block mx-auto"
+          src={Logo}
+          alt="logo"
+          width="200"
+          height="200"
+        />
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center  mt-[100px] w-[300px]"
+          className="flex flex-col items-center justify-center   w-[300px]"
         >
-          <label className="mt-4 font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
+          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
             add your exercise
             <input
               className="p-1 rounded-md border-2 border-amber-300 w-[300px] text-gray-700 "
