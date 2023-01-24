@@ -4,6 +4,8 @@ import TrainingItem from "../components/TrainingItem";
 import { red, yellow, green } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
 import Logo from "../img/logo.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
@@ -16,6 +18,12 @@ const TrainingPage = () => {
     const initialValue = JSON.parse(trains);
     return initialValue || [];
   });
+  const showToastMessage = () => {
+    toast.success("Train added", {
+      position: toast.POSITION.TOP_CENTER,
+      style: { background: "rgb(254 243 199)" },
+    });
+  };
 
   interface FormDataType {
     trainName: string;
@@ -190,6 +198,7 @@ const TrainingPage = () => {
           </div>
           <button
             onSubmit={handleSubmit}
+            onClick={showToastMessage}
             className="block mx-auto rounded-full px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 uppercase "
           >
             add
@@ -199,6 +208,7 @@ const TrainingPage = () => {
           <TrainingItem trains={allTrains} />
         </ul>
       </div>
+      <ToastContainer autoClose={500} />
     </div>
   );
 };
