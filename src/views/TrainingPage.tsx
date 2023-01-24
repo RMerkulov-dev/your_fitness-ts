@@ -91,7 +91,7 @@ const TrainingPage = () => {
               repeats
               <input
                 className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700 "
-                type="text"
+                type="number"
                 name="repeats"
                 value={repeat}
                 maxLength={3}
@@ -103,7 +103,7 @@ const TrainingPage = () => {
               sets
               <input
                 className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700"
-                type="text"
+                type="number"
                 name="sets"
                 value={sets}
                 maxLength={3}
