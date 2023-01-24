@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../img/logo.png";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -22,9 +23,12 @@ const HomePage = () => {
           <h2 className="uppercase text-4xl font-bold text-amber-100 ml-10 drop-shadow-md">
             your fitness
           </h2>
-          <button className="block mx-auto rounded-md px-[50px] py-1 bg-amber-100 text-[30px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-10">
+          <Link
+            to="/train"
+            className="block mx-auto rounded-md px-[50px] py-1 bg-amber-100 text-[30px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-10"
+          >
             start
-          </button>
+          </Link>
         </div>
       </div>
     </div>
