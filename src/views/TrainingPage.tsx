@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
-import { pink, red, yellow, green } from "@mui/material/colors";
+import { red, yellow, green } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
 
 const TrainingPage = () => {
@@ -9,7 +9,12 @@ const TrainingPage = () => {
   const [repeat, setRepeat] = useState("0");
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
-  const [allTrains, setAllTrains] = useState([]);
+  const [allTrains, setAllTrains] = useState(() => {
+    const trains = localStorage.getItem("ALL_TRAINS");
+    // @ts-ignore
+    const initialValue = JSON.parse(trains);
+    return initialValue || [];
+  });
 
   interface FormDataType {
     trainName: string;
@@ -59,6 +64,11 @@ const TrainingPage = () => {
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
+  }, [allTrains]);
+
   const controlProps = (item: string) => ({
     checked: fill === item,
     onChange: handleChange,
