@@ -167,40 +167,6 @@ const TrainingPage = () => {
               />
               good
             </div>
-
-            {/*<label>*/}
-            {/*  <input*/}
-            {/*    type="radio"*/}
-            {/*    id="chooseBad"*/}
-            {/*    name="bad"*/}
-            {/*    value="bad"*/}
-            {/*    checked={fill === "bad"}*/}
-            {/*    onChange={handleChange}*/}
-            {/*  />{" "}*/}
-            {/*  bad*/}
-            {/*</label>*/}
-            {/*<label>*/}
-            {/*  <input*/}
-            {/*    type="radio"*/}
-            {/*    id="chooseMedium"*/}
-            {/*    name="medium"*/}
-            {/*    value="medium"*/}
-            {/*    checked={fill === "medium"}*/}
-            {/*    onChange={handleChange}*/}
-            {/*  />*/}
-            {/*  medium*/}
-            {/*</label>*/}
-            {/*<label>*/}
-            {/*  <input*/}
-            {/*    type="radio"*/}
-            {/*    id="chooseGood"*/}
-            {/*    name="good"*/}
-            {/*    value="good"*/}
-            {/*    checked={fill === "good"}*/}
-            {/*    onChange={handleChange}*/}
-            {/*  />*/}
-            {/*  good*/}
-            {/*</label>*/}
           </div>
           <button
             onSubmit={handleSubmit}
