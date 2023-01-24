@@ -74,9 +74,10 @@ const TrainingPage = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center  mt-[100px] w-[300px]"
         >
-          <label>
+          <label className="mt-4 font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
+            add your exercise
             <input
-              className="p-1 rounded-md border-2 border-amber-300 w-[300px] "
+              className="p-1 rounded-md border-2 border-amber-300 w-[300px] text-gray-700 "
               type="text"
               name="exercise"
               value={trainName}
@@ -86,9 +87,10 @@ const TrainingPage = () => {
             />
           </label>
           <div className="flex items-center justify-start gap-3 mt-4">
-            <label>
+            <label className="mt-4 font-bold text-l text-amber-100 uppercase flex items-center justify-center gap-2">
+              repeats
               <input
-                className="p-1 rounded-md border-2 border-amber-300 w-[80px] "
+                className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700 "
                 type="text"
                 name="repeats"
                 value={repeat}
@@ -96,9 +98,10 @@ const TrainingPage = () => {
                 onChange={handleChange}
               />
             </label>
-            <label>
+            <label className="mt-4 font-bold text-l text-amber-100 uppercase flex items-center justify-center gap-2">
+              sets
               <input
-                className="p-1 rounded-md border-2 border-amber-300 w-[80px]"
+                className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700"
                 type="text"
                 name="sets"
                 value={sets}
@@ -107,7 +110,7 @@ const TrainingPage = () => {
               />
             </label>
           </div>
-          <h3 className="mt-4 font-bold text-xl text-amber-100 uppercase">
+          <h3 className="mt-4 font-bold text-l text-amber-100 uppercase">
             how do you fill
           </h3>
           <div className="flex items-center justify-start gap-3 ">
@@ -201,9 +204,9 @@ const TrainingPage = () => {
           </div>
           <button
             onSubmit={handleSubmit}
-            className="block mx-auto rounded-md px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 "
+            className="block mx-auto rounded-full px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 uppercase "
           >
-            done
+            add
           </button>
         </form>
         <ul className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3 ">
