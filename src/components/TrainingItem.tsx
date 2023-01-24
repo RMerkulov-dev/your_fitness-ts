@@ -1,4 +1,7 @@
 import React from "react";
+import { BsFillEmojiFrownFill } from "react-icons/bs";
+import { BsFillEmojiNeutralFill } from "react-icons/bs";
+import { BsFillEmojiSmileFill } from "react-icons/bs";
 
 export interface TrainsProps {
   trains: Trains[];
@@ -8,7 +11,7 @@ export interface Trains {
   trainName: number;
   repeat: string;
   sets: string;
-  fill: number;
+  fill: string;
   id: string;
 }
 
@@ -21,7 +24,7 @@ const TrainingItem = ({ trains }: TrainsProps) => {
           key={train.id}
           className="bg-amber-50 w-full flex rounded-md mb-[10px] p-3 gap-2"
         >
-          <p className="font-bold text-[12px] text-gray-700 w-[150px]">
+          <p className="font-bold text-[12px] text-gray-700 w-[200px]">
             <span className="text-gray-400 mr-1">train</span>
             {train.trainName}
           </p>
@@ -33,9 +36,17 @@ const TrainingItem = ({ trains }: TrainsProps) => {
             <span className="text-gray-400 mr-1">sets</span>
             {train.sets}
           </p>
-          <p className="font-bold text-[12px] text-gray-700">
+          <p className="font-bold text-[12px] text-gray-700 flex items-baseline">
             <span className="text-gray-400 mr-1">fill</span>
-            {train.fill}
+            {train.fill === "bad" && (
+              <BsFillEmojiFrownFill className="fill-red-300 " />
+            )}
+            {train.fill === "normal" && (
+              <BsFillEmojiNeutralFill className="fill-yellow-300 " />
+            )}
+            {train.fill === "good" && (
+              <BsFillEmojiSmileFill className="fill-green-300 " />
+            )}
           </p>
         </li>
       ))}

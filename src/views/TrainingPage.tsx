@@ -81,7 +81,7 @@ const TrainingPage = () => {
               type="text"
               name="exercise"
               value={trainName}
-              maxLength={10}
+              maxLength={20}
               placeholder="Enter name of exercises"
               onChange={handleChange}
             />
@@ -91,9 +91,10 @@ const TrainingPage = () => {
               repeats
               <input
                 className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700 "
-                type="text"
+                type="number"
                 name="repeats"
                 value={repeat}
+                maxLength={3}
                 placeholder="repeats"
                 onChange={handleChange}
               />
@@ -102,9 +103,10 @@ const TrainingPage = () => {
               sets
               <input
                 className="p-1 rounded-md border-2 border-amber-300 w-[80px] text-gray-700"
-                type="text"
+                type="number"
                 name="sets"
                 value={sets}
+                maxLength={3}
                 placeholder="sets"
                 onChange={handleChange}
               />
