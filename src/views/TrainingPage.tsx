@@ -81,7 +81,7 @@ const TrainingPage = () => {
               type="text"
               name="exercise"
               value={trainName}
-              maxLength={10}
+              maxLength={20}
               placeholder="Enter name of exercises"
               onChange={handleChange}
             />
@@ -94,6 +94,7 @@ const TrainingPage = () => {
                 type="text"
                 name="repeats"
                 value={repeat}
+                maxLength={3}
                 placeholder="repeats"
                 onChange={handleChange}
               />
@@ -105,6 +106,7 @@ const TrainingPage = () => {
                 type="text"
                 name="sets"
                 value={sets}
+                maxLength={3}
                 placeholder="sets"
                 onChange={handleChange}
               />
