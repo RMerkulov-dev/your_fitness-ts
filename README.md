@@ -16,6 +16,11 @@
 -Added new icons<br>
 -Added confirmation window after adding items
 
+## Version 2.0.0:<br>
+-Refactored and added Redux state<br>
+-Added deleting functional<br>
+
+
 
 
 
