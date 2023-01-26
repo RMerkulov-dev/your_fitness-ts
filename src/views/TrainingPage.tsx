@@ -21,17 +21,17 @@ const TrainingPage = () => {
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
 
-  const DATE_OPTIONS = {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
   const currentDate = new Date().toLocaleDateString("en-US");
   console.log(currentDate);
 
   const showToastMessage = () => {
     toast.success("Train added", {
+      position: toast.POSITION.TOP_CENTER,
+      style: { background: "rgb(254 243 199)" },
+    });
+  };
+  const sowDeletedMessage = () => {
+    toast.success("Train deleted", {
       position: toast.POSITION.TOP_CENTER,
       style: { background: "rgb(254 243 199)" },
     });
@@ -55,7 +55,6 @@ const TrainingPage = () => {
   const dispatch = useAppDispatch();
   const trainsList = useAppSelector((state) => state.train.allTrains);
 
-  console.log(trainsList);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "exercise":
@@ -112,6 +111,7 @@ const TrainingPage = () => {
       (train: { id: string }) => train.id !== id
     );
     dispatch(setTrainsList(updateTrains));
+    sowDeletedMessage();
   };
 
   return (
@@ -128,7 +128,7 @@ const TrainingPage = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center   w-[300px]"
         >
-          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
+          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase mt-5">
             add your exercise
             <input
               className="p-1 rounded-md border-2 border-amber-300 w-[300px] text-gray-700 "
