@@ -20,7 +20,7 @@ const TrainingPage = () => {
   const [repeat, setRepeat] = useState("0");
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
-  const [allTrains, setAllTrains] = useState([]);
+
   const showToastMessage = () => {
     toast.success("Train added", {
       position: toast.POSITION.TOP_CENTER,
@@ -79,8 +79,6 @@ const TrainingPage = () => {
     console.log(trainName);
 
     // @ts-ignore
-    setAllTrains([...allTrains, trainData]);
-    // @ts-ignore
     dispatch(
       addTrains({
         train: trainName,
@@ -91,10 +89,6 @@ const TrainingPage = () => {
       })
     );
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
-  // }, [allTrains]);
 
   const controlProps = (item: string) => ({
     checked: fill === item,

@@ -16,7 +16,6 @@ export interface Trains {
 }
 
 const TrainingItem = ({ trains }: TrainsProps) => {
-  // console.log(trains);
   return (
     <>
       {trains.map((train) => (
