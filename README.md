@@ -15,3 +15,11 @@
 -Added localStorage saving trainings<br>
 -Added new icons<br>
 -Added confirmation window after adding items
+
+
+
+
+
+
+TODO:
+-remove all ts-ignore and add types
