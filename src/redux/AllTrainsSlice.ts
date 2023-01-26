@@ -15,6 +15,9 @@ const TrainsSlice = createSlice({
       // @ts-ignore
       state.allTrains.push({
         train: action.payload.train,
+        repeats: action.payload.repeats,
+        sets: action.payload.sets,
+        fill: action.payload.fill,
         id: action.payload.id,
       });
     },

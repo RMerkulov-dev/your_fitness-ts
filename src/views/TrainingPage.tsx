@@ -76,11 +76,20 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
+    console.log(trainName);
 
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
     // @ts-ignore
-    dispatch(addTrains({ trainData }));
+    dispatch(
+      addTrains({
+        train: trainName,
+        repeats: repeat,
+        sets: sets,
+        fill: fill,
+        id: nanoid(),
+      })
+    );
   };
 
   // useEffect(() => {
