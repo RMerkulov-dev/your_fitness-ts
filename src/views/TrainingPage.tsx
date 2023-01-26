@@ -223,7 +223,7 @@ const TrainingPage = () => {
           </button>
         </form>
         <ul className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3 ">
-          <TrainingItem trains={allTrains} />
+          <TrainingItem trains={trainsList} />
         </ul>
       </div>
       <ToastContainer autoClose={500} />

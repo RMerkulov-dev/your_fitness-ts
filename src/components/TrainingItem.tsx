@@ -8,8 +8,8 @@ export interface TrainsProps {
 }
 
 export interface Trains {
-  trainName: number;
-  repeat: string;
+  train: string;
+  repeats: string;
   sets: string;
   fill: string;
   id: string;
@@ -26,11 +26,11 @@ const TrainingItem = ({ trains }: TrainsProps) => {
         >
           <p className="font-bold text-[12px] text-gray-700 w-[200px]">
             <span className="text-gray-400 mr-1">train</span>
-            {train.trainName}
+            {train.train}
           </p>
           <p className="font-bold text-[12px] text-gray-700">
             <span className="text-gray-400 mr-1">repeats</span>
-            {train.repeat}
+            {train.repeats}
           </p>
           <p className="font-bold text-[12px] text-gray-700">
             <span className="text-gray-400 mr-1">sets</span>
