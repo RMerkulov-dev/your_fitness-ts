@@ -48,6 +48,9 @@ const TrainingPage = () => {
     id: nanoid(),
   };
 
+  const dispatch = useAppDispatch();
+  const trainsList = useAppSelector();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "exercise":
