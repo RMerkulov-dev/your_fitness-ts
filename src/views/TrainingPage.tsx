@@ -7,19 +7,31 @@ import Logo from "../img/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useAppDispatch, useAppSelector } from "../hooks";
+import {
+  setTrainsList,
+  addTrains,
+  updateTrain,
+  deleteTrain,
+} from "../redux/AllTrainsSlice";
+
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
   const [repeat, setRepeat] = useState("0");
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
-  const [allTrains, setAllTrains] = useState(() => {
-    const trains = localStorage.getItem("ALL_TRAINS");
-    // @ts-ignore
-    const initialValue = JSON.parse(trains);
-    return initialValue || [];
-  });
+
+  const currentDate = new Date().toLocaleDateString("en-US");
+  console.log(currentDate);
+
   const showToastMessage = () => {
     toast.success("Train added", {
+      position: toast.POSITION.TOP_CENTER,
+      style: { background: "rgb(254 243 199)" },
+    });
+  };
+  const sowDeletedMessage = () => {
+    toast.success("Train deleted", {
       position: toast.POSITION.TOP_CENTER,
       style: { background: "rgb(254 243 199)" },
     });
@@ -39,6 +51,9 @@ const TrainingPage = () => {
     fill: "bad",
     id: nanoid(),
   };
+
+  const dispatch = useAppDispatch();
+  const trainsList = useAppSelector((state) => state.train.allTrains);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -71,12 +86,17 @@ const TrainingPage = () => {
     trainData.fill = fill;
 
     // @ts-ignore
-    setAllTrains([...allTrains, trainData]);
+    dispatch(
+      addTrains({
+        train: trainName,
+        repeats: repeat,
+        sets: sets,
+        fill: fill,
+        id: nanoid(),
+        date: currentDate,
+      })
+    );
   };
-
-  useEffect(() => {
-    localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
-  }, [allTrains]);
 
   const controlProps = (item: string) => ({
     checked: fill === item,
@@ -85,6 +105,14 @@ const TrainingPage = () => {
     name: "color-radio-button-demo",
     inputProps: { "aria-label": item },
   });
+
+  const handleDeleted = (id: string) => {
+    const updateTrains = trainsList.filter(
+      (train: { id: string }) => train.id !== id
+    );
+    dispatch(setTrainsList(updateTrains));
+    sowDeletedMessage();
+  };
 
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
@@ -100,7 +128,7 @@ const TrainingPage = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center   w-[300px]"
         >
-          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase">
+          <label className=" font-bold text-l text-amber-100 uppercase flex items-center justify-center flex-col gap-2 uppercase mt-5">
             add your exercise
             <input
               className="p-1 rounded-md border-2 border-amber-300 w-[300px] text-gray-700 "
@@ -205,7 +233,7 @@ const TrainingPage = () => {
           </button>
         </form>
         <ul className="bg-white bg-opacity-20 backdrop-blur-md bg-amber-50 w-full h-full mt-[30px] border-2 rounded-md border-amber-300 overflow-y-scroll px-3 py-3 ">
-          <TrainingItem trains={allTrains} />
+          <TrainingItem trains={trainsList} deleted={handleDeleted} />
         </ul>
       </div>
       <ToastContainer autoClose={500} />
