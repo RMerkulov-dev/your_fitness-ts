@@ -2,9 +2,11 @@ import React from "react";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
 import { BsFillEmojiNeutralFill } from "react-icons/bs";
 import { BsFillEmojiSmileFill } from "react-icons/bs";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export interface TrainsProps {
   trains: Trains[];
+  deleted: (id: string) => void;
 }
 
 export interface Trains {
@@ -15,7 +17,7 @@ export interface Trains {
   id: string;
 }
 
-const TrainingItem = ({ trains }: TrainsProps) => {
+const TrainingItem = ({ trains, deleted }: TrainsProps) => {
   return (
     <>
       {trains.map((train) => (
@@ -47,6 +49,12 @@ const TrainingItem = ({ trains }: TrainsProps) => {
               <BsFillEmojiSmileFill className="fill-green-300 " />
             )}
           </p>
+          <button
+            className="cursor-pointer hover:scale-110 transition-[0,3s]"
+            onClick={() => deleted(train.id)}
+          >
+            {<RiDeleteBin6Line className="fill-gray-500" />}
+          </button>
         </li>
       ))}
     </>
