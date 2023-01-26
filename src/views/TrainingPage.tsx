@@ -20,12 +20,7 @@ const TrainingPage = () => {
   const [repeat, setRepeat] = useState("0");
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
-  const [allTrains, setAllTrains] = useState(() => {
-    const trains = localStorage.getItem("ALL_TRAINS");
-    // @ts-ignore
-    const initialValue = JSON.parse(trains);
-    return initialValue || [];
-  });
+  const [allTrains, setAllTrains] = useState([]);
   const showToastMessage = () => {
     toast.success("Train added", {
       position: toast.POSITION.TOP_CENTER,
@@ -49,8 +44,9 @@ const TrainingPage = () => {
   };
 
   const dispatch = useAppDispatch();
-  const trainsList = useAppSelector();
+  const trainsList = useAppSelector((state) => state.train.allTrains);
 
+  console.log(trainsList);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "exercise":
@@ -80,13 +76,16 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
+
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
+    // @ts-ignore
+    dispatch(addTrains({ trainData }));
   };
 
-  useEffect(() => {
-    localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
-  }, [allTrains]);
+  // useEffect(() => {
+  //   localStorage.setItem("ALL_TRAINS", JSON.stringify(allTrains));
+  // }, [allTrains]);
 
   const controlProps = (item: string) => ({
     checked: fill === item,
