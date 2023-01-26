@@ -39,7 +39,7 @@ const TrainingItem = ({ trains, deleted }: TrainsProps) => {
             {train.sets}
           </p>
           <p className="font-bold text-[12px] text-gray-700 flex items-baseline ">
-            <span className="text-gray-400 mr-1">fill</span>
+            <span className="text-gray-400 mr-1">feel</span>
             {train.fill === "bad" && (
               <BsFillEmojiFrownFill className="fill-red-300 " />
             )}

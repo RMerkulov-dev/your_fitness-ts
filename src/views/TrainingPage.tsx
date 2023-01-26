@@ -167,7 +167,7 @@ const TrainingPage = () => {
             </label>
           </div>
           <h3 className="mt-4 font-bold text-l text-amber-100 uppercase">
-            how do you fill
+            how do you feel
           </h3>
           <div className="flex items-center justify-start gap-3 ">
             <div className="font-bold text-white text-l flex items-center justify-center">
