@@ -19,6 +19,7 @@ const TrainsSlice = createSlice({
         sets: action.payload.sets,
         fill: action.payload.fill,
         id: action.payload.id,
+        date: action.payload.date,
       });
     },
     deleteTrain: (state, action) => {},

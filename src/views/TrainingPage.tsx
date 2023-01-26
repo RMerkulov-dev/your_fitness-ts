@@ -21,6 +21,15 @@ const TrainingPage = () => {
   const [sets, setSets] = useState("0");
   const [fill, setFill] = useState("bad");
 
+  const DATE_OPTIONS = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  const currentDate = new Date().toLocaleDateString("en-US");
+  console.log(currentDate);
+
   const showToastMessage = () => {
     toast.success("Train added", {
       position: toast.POSITION.TOP_CENTER,
@@ -76,7 +85,6 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
-    console.log(trainName);
 
     // @ts-ignore
     dispatch(
@@ -86,6 +94,7 @@ const TrainingPage = () => {
         sets: sets,
         fill: fill,
         id: nanoid(),
+        date: currentDate,
       })
     );
   };
