@@ -27,7 +27,7 @@ const TrainingPage = () => {
   const showToastMessage = () => {
     toast.success("Train added", {
       position: toast.POSITION.TOP_CENTER,
-      style: { background: "rgb(254 243 199)" },
+      style: { background: "rgba(254,243,199,0.73)" },
     });
   };
   const sowDeletedMessage = () => {
