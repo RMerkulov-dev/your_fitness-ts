@@ -7,6 +7,14 @@ import Logo from "../img/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useAppDispatch, useAppSelector } from "../hooks";
+import {
+  setTrainsList,
+  addTrains,
+  updateTrain,
+  deleteTrain,
+} from "../redux/AllTrainsSlice";
+
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
   const [repeat, setRepeat] = useState("0");
@@ -69,7 +77,6 @@ const TrainingPage = () => {
     trainData.repeat = repeat;
     trainData.sets = sets;
     trainData.fill = fill;
-
     // @ts-ignore
     setAllTrains([...allTrains, trainData]);
   };
