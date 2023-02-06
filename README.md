@@ -31,4 +31,4 @@
 
 
 TODO:
--remove all ts-ignore and add types
+
