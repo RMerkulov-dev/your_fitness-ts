@@ -9,6 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { setTrainsList, addTrains } from "../redux/AllTrainsSlice";
+import {
+  showToastMessage,
+  showDeletedMessage,
+  showAlertMessage,
+} from "../helpers/alarms";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
@@ -18,19 +23,6 @@ const TrainingPage = () => {
 
   const currentDate = new Date().toLocaleDateString("en-US");
   console.log(currentDate);
-
-  const showToastMessage = () => {
-    toast.success("Train added", {
-      position: toast.POSITION.TOP_CENTER,
-      style: { background: "rgba(254,243,199,0.73)" },
-    });
-  };
-  const sowDeletedMessage = () => {
-    toast.success("Train deleted", {
-      position: toast.POSITION.TOP_CENTER,
-      style: { background: "rgb(254 243 199)" },
-    });
-  };
 
   interface FormDataType {
     trainName: string;
@@ -75,6 +67,10 @@ const TrainingPage = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    if (trainName === "") {
+      showAlertMessage();
+      return;
+    }
     trainData.trainName = trainName;
     trainData.repeat = repeat;
     trainData.sets = sets;
@@ -105,7 +101,7 @@ const TrainingPage = () => {
       (train: { id: string }) => train.id !== id
     );
     dispatch(setTrainsList(updateTrains));
-    sowDeletedMessage();
+    showDeletedMessage();
   };
 
   return (
@@ -220,7 +216,6 @@ const TrainingPage = () => {
           </div>
           <button
             onSubmit={handleSubmit}
-            onClick={showToastMessage}
             className="block mx-auto rounded-full px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 uppercase "
           >
             add
