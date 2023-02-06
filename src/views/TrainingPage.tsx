@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
 import { red, yellow, green } from "@mui/material/colors";
@@ -8,46 +8,33 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
+import { setTrainsList, addTrains } from "../redux/AllTrainsSlice";
 import {
-  setTrainsList,
-  addTrains,
-  updateTrain,
-  deleteTrain,
-} from "../redux/AllTrainsSlice";
+  showToastMessage,
+  showDeletedMessage,
+  showAlertMessage,
+} from "../helpers/alarms";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
-  const [repeat, setRepeat] = useState("0");
-  const [sets, setSets] = useState("0");
+  const [repeat, setRepeat] = useState<number | string>(0);
+  const [sets, setSets] = useState<number | string>(0);
   const [fill, setFill] = useState("bad");
 
   const currentDate = new Date().toLocaleDateString("en-US");
   console.log(currentDate);
 
-  const showToastMessage = () => {
-    toast.success("Train added", {
-      position: toast.POSITION.TOP_CENTER,
-      style: { background: "rgba(254,243,199,0.73)" },
-    });
-  };
-  const sowDeletedMessage = () => {
-    toast.success("Train deleted", {
-      position: toast.POSITION.TOP_CENTER,
-      style: { background: "rgb(254 243 199)" },
-    });
-  };
-
   interface FormDataType {
     trainName: string;
-    repeat: string;
-    sets: string;
+    repeat: number;
+    sets: number;
     fill: string;
     id: string;
   }
   const trainData: FormDataType = {
     trainName: "",
-    repeat: "",
-    sets: "0",
+    repeat: 0,
+    sets: 0,
     fill: "bad",
     id: nanoid(),
   };
@@ -56,6 +43,10 @@ const TrainingPage = () => {
   const trainsList = useAppSelector((state) => state.train.allTrains);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const positiveValue = parseInt(e.target.value);
+    if (positiveValue < 0) {
+      return;
+    }
     switch (e.target.name) {
       case "exercise":
         setTrainName(e.target.value);
@@ -80,12 +71,17 @@ const TrainingPage = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    if (trainName === "") {
+      showAlertMessage();
+      return;
+    }
     trainData.trainName = trainName;
-    trainData.repeat = repeat;
-    trainData.sets = sets;
+    if (typeof repeat === "number" && typeof sets === "number") {
+      trainData.repeat = repeat;
+      trainData.sets = sets;
+    }
     trainData.fill = fill;
 
-    // @ts-ignore
     dispatch(
       addTrains({
         train: trainName,
@@ -111,7 +107,7 @@ const TrainingPage = () => {
       (train: { id: string }) => train.id !== id
     );
     dispatch(setTrainsList(updateTrains));
-    sowDeletedMessage();
+    showDeletedMessage();
   };
 
   return (
@@ -226,7 +222,6 @@ const TrainingPage = () => {
           </div>
           <button
             onSubmit={handleSubmit}
-            onClick={showToastMessage}
             className="block mx-auto rounded-full px-[50px] py-1 bg-amber-100 text-[20px] font-bold text-gray-700 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-amber-300 mt-4 uppercase "
           >
             add

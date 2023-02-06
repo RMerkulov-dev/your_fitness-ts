@@ -1,6 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface Train {
+  train: string;
+  repeats: number | string;
+  sets: number | string;
+  fill: string;
+  id: string;
+  date: string;
+}
+
+interface TrainState {
+  allTrains: Train[];
+}
+
+const initialState: TrainState = {
   allTrains: [],
 };
 
@@ -11,8 +24,7 @@ const TrainsSlice = createSlice({
     setTrainsList: (state, action) => {
       state.allTrains = action.payload;
     },
-    addTrains: (state, action) => {
-      // @ts-ignore
+    addTrains: (state, action: PayloadAction<Train>) => {
       state.allTrains.push({
         train: action.payload.train,
         repeats: action.payload.repeats,
@@ -25,9 +37,7 @@ const TrainsSlice = createSlice({
     deleteTrain: (state, action) => {},
     updateTrain: (state, action) => {
       const { id, train } = action.payload;
-      // @ts-ignore
       const index = state.allTrains.findIndex((train) => train.id === id);
-      // @ts-ignore
       state.allTrains[index].train = train;
     },
   },
