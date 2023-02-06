@@ -4,11 +4,12 @@ import TrainingItem from "../components/TrainingItem";
 import { red, yellow, green } from "@mui/material/colors";
 import Radio from "@mui/material/Radio";
 import Logo from "../img/logo.png";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { setTrainsList, addTrains } from "../redux/AllTrainsSlice";
+
 import {
   showToastMessage,
   showDeletedMessage,
@@ -81,7 +82,7 @@ const TrainingPage = () => {
       trainData.sets = sets;
     }
     trainData.fill = fill;
-
+    showToastMessage();
     dispatch(
       addTrains({
         train: trainName,
