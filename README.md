@@ -20,6 +20,10 @@
 -Refactored and added Redux state<br>
 -Added deleting functional<br>
 
+## Version 2.1.0:<br>
+-Typing redux state and slice<br>
+-Added prevention of negative inputs and empty train<br>
+
 
 
 
