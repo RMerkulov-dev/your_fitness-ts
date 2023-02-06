@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import TrainingItem from "../components/TrainingItem";
 import { red, yellow, green } from "@mui/material/colors";
@@ -8,12 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
-import {
-  setTrainsList,
-  addTrains,
-  updateTrain,
-  deleteTrain,
-} from "../redux/AllTrainsSlice";
+import { setTrainsList, addTrains } from "../redux/AllTrainsSlice";
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
@@ -85,7 +80,6 @@ const TrainingPage = () => {
     trainData.sets = sets;
     trainData.fill = fill;
 
-    // @ts-ignore
     dispatch(
       addTrains({
         train: trainName,
