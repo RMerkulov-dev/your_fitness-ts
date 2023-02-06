@@ -43,6 +43,10 @@ const TrainingPage = () => {
   const trainsList = useAppSelector((state) => state.train.allTrains);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const positiveValue = parseInt(e.target.value);
+    if (positiveValue < 0) {
+      return;
+    }
     switch (e.target.name) {
       case "exercise":
         setTrainName(e.target.value);
