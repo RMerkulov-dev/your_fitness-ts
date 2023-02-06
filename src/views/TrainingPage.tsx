@@ -110,6 +110,8 @@ const TrainingPage = () => {
     showDeletedMessage();
   };
 
+  //FIXME:
+
   return (
     <div className="bg-main bg-no-repeat bg-cover  bg-center bg-fixed w-screen h-screen">
       <div className="bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg w-screen h-screen flex items-center justify-start flex-col px-3 py-5">
