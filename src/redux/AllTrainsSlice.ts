@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Train {
   train: string;
-  repeats: string;
-  sets: string;
+  repeats: number | string;
+  sets: number | string;
   fill: string;
   id: string;
   date: string;

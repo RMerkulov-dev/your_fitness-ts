@@ -11,8 +11,8 @@ export interface TrainsProps {
 
 export interface Trains {
   train: string;
-  repeats: string;
-  sets: string;
+  repeats: number;
+  sets: number;
   fill: string;
   id: string;
   date: ReactNode;

@@ -17,8 +17,8 @@ import {
 
 const TrainingPage = () => {
   const [trainName, setTrainName] = useState("");
-  const [repeat, setRepeat] = useState("0");
-  const [sets, setSets] = useState("0");
+  const [repeat, setRepeat] = useState<number | string>(0);
+  const [sets, setSets] = useState<number | string>(0);
   const [fill, setFill] = useState("bad");
 
   const currentDate = new Date().toLocaleDateString("en-US");
@@ -26,15 +26,15 @@ const TrainingPage = () => {
 
   interface FormDataType {
     trainName: string;
-    repeat: string;
-    sets: string;
+    repeat: number;
+    sets: number;
     fill: string;
     id: string;
   }
   const trainData: FormDataType = {
     trainName: "",
-    repeat: "",
-    sets: "0",
+    repeat: 0,
+    sets: 0,
     fill: "bad",
     id: nanoid(),
   };
@@ -72,8 +72,10 @@ const TrainingPage = () => {
       return;
     }
     trainData.trainName = trainName;
-    trainData.repeat = repeat;
-    trainData.sets = sets;
+    if (typeof repeat === "number" && typeof sets === "number") {
+      trainData.repeat = repeat;
+      trainData.sets = sets;
+    }
     trainData.fill = fill;
 
     dispatch(
