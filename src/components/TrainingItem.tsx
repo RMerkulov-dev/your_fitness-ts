@@ -21,6 +21,7 @@ export interface Trains {
 const TrainingItem = ({ trains, deleted }: TrainsProps) => {
   return (
     <>
+    
       {trains.map((train) => (
         <li
           key={train.id}
